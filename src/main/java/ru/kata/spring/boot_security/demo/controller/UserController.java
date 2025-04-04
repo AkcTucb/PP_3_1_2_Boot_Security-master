@@ -60,5 +60,9 @@ public class UserController {
         userService.deleteUser(id);
         return "redirect:/users";
     }
+    @GetMapping()
+    public String userPage() {
+        return "user";
+    }
 }
 

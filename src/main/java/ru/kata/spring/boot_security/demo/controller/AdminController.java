@@ -26,7 +26,7 @@ public class AdminController {
         this.roleService = roleService;
     }
 
-    @GetMapping
+    @GetMapping("/admin")
     public String listUsers(Model model) {
         model.addAttribute("users", userService.getAllUsers());
         return "userList";
@@ -50,6 +50,10 @@ public class AdminController {
         }
         userService.addUser(user);
         return "redirect:/admin";
+    }
+    @GetMapping()
+    public String adminPage() {
+        return "admin";
     }
 
 }
