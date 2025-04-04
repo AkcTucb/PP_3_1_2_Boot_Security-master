@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -60,8 +61,10 @@ public class UserController {
         userService.deleteUser(id);
         return "redirect:/users";
     }
-    @GetMapping()
-    public String userPage() {
+    @GetMapping("/user")
+    public String userPage(Model model, Principal principal) {
+        User user = userService.findByEmail(principal.getName());
+        model.addAttribute("user", user);
         return "user";
     }
 }
