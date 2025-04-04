@@ -45,7 +45,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User getUserByName(String name) { // Реализация метода
+    public User getUserByName(String name) {
         try {
             return em.createQuery("SELECT u FROM User u WHERE u.name = :name", User.class)
                     .setParameter("name", name)
@@ -61,10 +61,10 @@ public class UserDaoImpl implements UserDao {
                     .setParameter("email", email)
                     .getSingleResult();
         } catch (NoResultException e) {
-            return null;  // если пользователь не найден
+            return null;
         } catch (NonUniqueResultException e) {
             System.out.println("Ошибка: Найдено несколько пользователей с email: " + email);
-            return null;  // если найдено несколько пользователей
+            return null;
         }
     }
 
